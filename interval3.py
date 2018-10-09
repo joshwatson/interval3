@@ -99,6 +99,15 @@ class Smallest:
             retval = -1
         return retval
 
+    def __eq__(self, other):
+        return isinstance(other, Smallest)
+
+    def __lt__(self, other):
+        return True
+
+    def __gt__(self, other):
+        return False
+
     def __str__(self):
         """Returns a printable representation of this value
 
@@ -177,6 +186,15 @@ class Largest:
         else:
             retval = 1
         return retval
+
+    def __eq__(self, other):
+        return isinstance(other, Largest)
+
+    def __lt__(self, other):
+        return False
+    
+    def __gt__(self, other):
+        return True
 
     def __str__(self):
         """Returns a string representation of the object
@@ -440,6 +458,26 @@ class Interval:
         else:
             result = 1
         return result
+
+    def __eq__(self, other):
+        """Returns true if the two intervals are the same.
+
+        >>> Interval.between(2, 5) == Interval.between(2, 5)
+        True
+        """
+        return (
+            isinstance(other, Interval) and
+            self.upper_bound == other.upper_bound and
+            self.lower_bound == other.lower_bound and
+            self.upper_closed == other.upper_closed and
+            self.lower_closed == other.lower_closed
+        )
+
+    def __lt__(self, other):
+        return self.comes_before(other)
+
+    def __gt__(self, other):
+        return other.comes_before(self)
 
     def __and__(self, other):
         """Returns the intersection of two intervals
@@ -859,27 +897,6 @@ class Interval:
         else:
             result = other.adjacent_to(self)
         return result
-
-    def __eq__(self, other):
-        """Test if an interval is equivalent to the object
-
-        >>> Interval.all() == Interval.none()
-        False
-        >>> Interval.equal_to(4) == Interval(4, 4)
-        True
-        >>> Interval(2, 2, closed=False) == Interval(0, 0, closed=False)
-        True
-        """
-        return (
-            self.lower_bound == self.upper_bound and (
-                not self.lower_closed or not self.upper_closed)
-            and other.lower_bound == other.upper_bound and (
-                not other.lower_closed or not other.upper_closed))\
-            or (
-                self.lower_bound == other.lower_bound
-                and self.upper_bound == other.upper_bound
-                and self.lower_closed == other.lower_closed
-                and self.upper_closed == other.upper_closed)
 
 
 class BaseIntervalSet(object):
