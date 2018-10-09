@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: interval3
+Version: 2.0.0
+Summary: Interval and IntervalSet Data Types
+Home-page: https://www.github.com/joshwatson/interval3
+Author: Josh Watson
+Author-email: interval3@joshwatson.com
+License: LGPL
+Description: 
+        Unlike the built-in sets, IntervalSets contain sets of Interval objects,
+        which describe an interval of continuous values.  These IntervalSets can
+        be used in pretty much the same ways as set objects.
+
+        interval3 is a fork of the original interval module by Jacob Page.
+Requires-Python: >2.7,>=3
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Mathematics
